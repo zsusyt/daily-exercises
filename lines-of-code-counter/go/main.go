@@ -20,11 +20,11 @@ func init () {
 
 func main () {
 	//projectPath := flag.String("pp", "E:\\sourceCode\\isp-fe\\src", "请提供想要统计的工程路径")
-	projectPath := flag.String("pp", "/Users/zsusyt/works/lvshou/isp-fe/src/util", "请提供想要统计的工程路径")
+	projectPath := flag.String("pp", "/Users/zsusyt/works/lvshou/isp-fe/src", "请提供想要统计的工程路径")
 	flag.Parse()
 	fmt.Println(*projectPath)
 
-	fi, err := os.Lstat(*projectPath)
+	_, err := os.Lstat(*projectPath)
 	if err != nil {
 		fmt.Println("读取工程路径出错")
 	}
@@ -46,8 +46,6 @@ func readChild(parent string, child os.FileInfo) {
 
 	newPath := filepath.Join(parent, child.Name())
 	if child.IsDir() {
-		fmt.Println(newPath)
-
 		files, _ := ioutil.ReadDir(newPath)
 		for _, file := range files {
 			readChild(newPath, file)
