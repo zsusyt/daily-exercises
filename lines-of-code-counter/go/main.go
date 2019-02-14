@@ -7,6 +7,11 @@ import (
 	"os"
 	"path/filepath"
 )
+//todo 计时
+
+//todo buffio
+
+//todo goroutine
 
 var config map[string]bool
 var sum int64
