@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"time"
 )
 //todo 计时
 
@@ -39,6 +40,12 @@ func main () {
 		fmt.Println("读取工程路径内的文件出错")
 	}
 
+	startTime := time.Now();
+	defer func() {
+		// 计算程序运行时间
+		endTime := time.Since(startTime)
+		fmt.Println(fmt.Sprintf("%s", endTime))
+	}()
 	for _, file := range files {
 		readChild(*projectPath, file)
 	}

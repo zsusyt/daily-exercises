@@ -35,6 +35,9 @@ const config = {
 }
 
 let sum = 0;
+let length = 0;
+let unfinishedFiles = [];
+let finishedFiles = [];
 
 function readChild(parent, child) {
     let newPath = path.join(parent, child)
@@ -45,21 +48,33 @@ function readChild(parent, child) {
             readChild(newPath, file)
         })
     } else {
-        countFileLines(newPath)
+        makeUnfinishedFilesArray(newPath)
     }
 }
 
-function countFileLines (filePath) {
+function makeUnfinishedFilesArray (filePath) {
     let parsedPath = path.parse(filePath)
     let ext = parsedPath.ext.slice(1)
     if (config[ext]) {
-        let data = fs.readFileSync(filePath)
-        sum += data.toString().match(/\n/g).length
+        unfinishedFiles.push(filePath)
     }
 }
 
-console.time("test")
+function countFiles () {
+    unfinishedFiles.forEach(file=>{
+        let data = fs.readFile(file, (err, data) => {
+            sum += data.toString().match(/\n/g).length;
+            finishedFiles.push(file)
+            if (finishedFiles.length === length) {
+                console.timeEnd("test")
+                console.log(sum)
+            }
+        })
+    })
+}
+
 if (projectPath) {
+    console.time("test")
     let stat = fs.statSync(projectPath)
 
     if (stat.isDirectory()) {
@@ -67,12 +82,11 @@ if (projectPath) {
         files.forEach(file=>{
             readChild(projectPath, file)
         })
+        length = unfinishedFiles.length;
+        countFiles()
     } else {
         console.log("读取源代码路径出错，请检查路径是否合法")
     }
 } else {
     console.log("请提供正确项目源代码路径")
 }
-console.timeEnd("test")
-
-console.log(sum)
