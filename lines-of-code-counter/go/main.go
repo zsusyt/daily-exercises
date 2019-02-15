@@ -24,8 +24,8 @@ func init () {
 }
 
 func main () {
-	//projectPath := flag.String("pp", "E:\\sourceCode\\isp-fe\\src", "请提供想要统计的工程路径")
-	projectPath := flag.String("pp", "/Users/zsusyt/works/lvshou/isp-fe/src", "请提供想要统计的工程路径")
+	projectPath := flag.String("pp", "E:\\sourceCode\\isp-fe\\src", "请提供想要统计的工程路径")
+	//projectPath := flag.String("pp", "/Users/zsusyt/works/lvshou/isp-fe/src", "请提供想要统计的工程路径")
 	flag.Parse()
 	fmt.Println(*projectPath)
 
