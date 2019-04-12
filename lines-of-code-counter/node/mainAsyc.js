@@ -22,8 +22,8 @@ let argArray = process.argv
 let argLength = argArray.length
 let projectPath = ""
 if (argLength <= 2) {
-    // projectPath = "E:\\sourceCode\\isp-fe\\src"
-    projectPath = "/Users/zsusyt/works/lvshou/isp-fe/src"
+    projectPath = "E:\\sourceCode\\isp-fe\\src"
+    // projectPath = "/Users/zsusyt/works/lvshou/isp-fe/src"
 } else {
     projectPath = getPP(argArray)
 }
