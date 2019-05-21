@@ -1,4 +1,5 @@
 var merge = require('./merge.js')
+// var merge = require('./merge2.js')
 
 let time1 = {
   startTime: "10:01",
@@ -85,7 +86,7 @@ let result7 = [time1, {
 }, time4]
 console.log(JSON.stringify(merge(target, case7)) === JSON.stringify(result7))
 
-// 起在中间某个段内，止在中间某个段内
+// // 起在中间某个段内，止在中间某个段内
 let case8 = {
   startTime: "10:30",
   endTime: "14:30"
@@ -114,3 +115,11 @@ let case10 = {
 }
 let result10 = [time1, time2, case10,time3, time4]
 console.log(JSON.stringify(merge(target, case10)) === JSON.stringify(result10))
+
+// 空数组
+let case11 = {
+  startTime: "11:44",
+  endTime: "12:04"
+}
+let result11 = [case11]
+console.log(JSON.stringify(merge([], case11)) === JSON.stringify(result11))
