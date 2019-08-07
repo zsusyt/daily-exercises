@@ -1,4 +1,4 @@
-function insert(data) {
+export default function insert(data) {
     let length = data.length;
     if(length <= 1) {
         return data
@@ -26,7 +26,7 @@ function swap(data, dstIndex, srcIndex) {
     data[srcIndex] = tmp
 }
 
-let a = [1,2,4,3]
+let a = [5,2,4,3]
 
 let result = insert(a);
-console.log(result)
+console.log(a)
