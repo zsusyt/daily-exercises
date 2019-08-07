@@ -1,4 +1,4 @@
-export default function insert(data) {
+function insert(data) {
     let length = data.length;
     if(length <= 1) {
         return data
