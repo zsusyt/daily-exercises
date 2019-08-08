@@ -41,21 +41,26 @@ function partition(data, left, right) {
     let j = right;
     let pivot = left;
     while(j-i>1) {
-        while(data[j] >= data[pivot] && j > i) {
+        while(data[j] >= data[pivot] && j > i + 1) {
             j--
         }
-        while(data[i] <= data[pivot] && i < j) {
+        while(data[i] <= data[pivot] && j > i + 1) {
             i++
         }
         if(data[j] < data[pivot] && data[i] > data[pivot]) {
             swap(data, j, i);
         }
     }
-    swap(data, pivot, i);
-    return i;
+    if(data[j] < data[pivot]) {
+        swap(data, pivot, j);
+        return j
+    } else {
+        swap(data, pivot, i);
+        return i
+    }
 }
 
-let a = [10, 1, 4, 6, 8, 3, 9, 11, 100, 1000, 234, 452, 12, 81, 90, 101, 100]
+let a = [20, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
 quick(a, 0, a.length - 1)
 
